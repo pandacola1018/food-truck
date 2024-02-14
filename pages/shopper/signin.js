@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useState} from 'react'
+
 import {
     Box,
     Button,
@@ -21,12 +22,24 @@ import {
   import { auth } from "../../firebase/fireConfig";
 
 function SignIn() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  function handleEmailChange(e) {
+    console.log(e.target.value);
+    setEmail(e.target.value);
+  }
+
+  function handlePasswordChange(e) {
+    console.log(e.target.value);
+    setPassword(e.target.value);
+  }
   function signinClick() {
-    const email = "wenyuenchao@outlook.com";
-    const password = "0123456";
+    
     signInWithEmailAndPassword(auth, email, password)
 
       .then((userCredential) => {
+
         // Signed in
         const user = userCredential.user;
         console.log(user);
@@ -103,9 +116,9 @@ function SignIn() {
           <Stack spacing="5">
             <FormControl>
               <FormLabel htmlFor="email">Email</FormLabel>
-              <Input id="email" type="email" />
+              <Input id="email" type="email" onChange={handleEmailChange} value={email}/>
             </FormControl>
-           {<PasswordField />}
+           <PasswordField onChange={handlePasswordChange} value={password}/>
           </Stack>
           <HStack justify="space-between">
             <Checkbox defaultChecked>Remember me</Checkbox>
