@@ -1,4 +1,5 @@
 import React from "react";
+import {useState} from "react";
 import {
   Box,
   Button,
@@ -25,6 +26,18 @@ import Link from 'next/link';
 
 
 function Signup() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  function handleEmailChange(e) {
+    console.log(e.target.value);
+    setEmail(e.target.value);
+  }
+
+  function handlePasswordChange(e) {
+    console.log(e.target.value);
+    setPassword(e.target.value);
+  }
   function signupClick() {
     //const email = "crazybrain1018@gmail.com";
     //const password = "0123456";
@@ -105,9 +118,9 @@ function Signup() {
             <Stack spacing="5">
               <FormControl>
                 <FormLabel htmlFor="email">Email</FormLabel>
-                <Input id="email" type="email" />
+                <Input id="email" type="email" onChange={handleEmailChange} value={email}/>
               </FormControl>
-              {<PasswordField />}
+              <PasswordField onChange={handlePasswordChange} value={password}/>
             </Stack>
 
             <Stack spacing="6">
@@ -119,7 +132,7 @@ function Signup() {
                 </Text>
                 <Divider />
               </HStack>
-              {<OAuthButtonGroup />}
+              <OAuthButtonGroup />
             </Stack>
           </Stack>
         </Box>

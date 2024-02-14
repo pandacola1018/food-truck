@@ -82,7 +82,7 @@ function Signup() {
               <FormLabel htmlFor="email">Email</FormLabel>
               <Input id="email" type="email" />
             </FormControl>
-           {<PasswordField />}
+           <PasswordField />
           </Stack>
           
           <Stack spacing="6">
@@ -94,7 +94,7 @@ function Signup() {
               </Text>
               <Divider />
             </HStack>
-            {<OAuthButtonGroup />}
+            <OAuthButtonGroup />
           </Stack>
         </Stack>
       </Box>

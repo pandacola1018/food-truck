@@ -42,6 +42,7 @@ export const PasswordField = forwardRef((props, ref) => {
           type={isOpen ? 'text' : 'password'}
           autoComplete="current-password"
           required
+          onChange={props.handlePasswordChange}
           {...props}
         />
       </InputGroup>

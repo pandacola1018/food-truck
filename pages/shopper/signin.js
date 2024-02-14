@@ -16,8 +16,9 @@ import {
   import { Logo } from '../component/Logo';
   import { OAuthButtonGroup } from '../component/OAuthButtonGroup';
   import { PasswordField } from '../component/PasswordField';
-  import { auth, signInWithEmailAndPassword } from "firebase/auth";
+  import {signInWithEmailAndPassword } from "firebase/auth";
   import Link from 'next/link';
+  import { auth } from "../../firebase/fireConfig";
 
 function SignIn() {
   function signinClick() {
@@ -28,6 +29,7 @@ function SignIn() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        console.log(user);
         console.log("sing in okay");
         // ...
       })
