@@ -10,15 +10,36 @@ import {
     Heading,
     HStack,
     Input,
-    Link,
     Stack,
     Text,
   } from '@chakra-ui/react'
   import { Logo } from '../component/Logo';
   import { OAuthButtonGroup } from '../component/OAuthButtonGroup';
   import { PasswordField } from '../component/PasswordField';
+  import { auth, signInWithEmailAndPassword } from "firebase/auth";
+  import Link from 'next/link';
 
 function SignIn() {
+  function signinClick() {
+    const email = "wenyuenchao@outlook.com";
+    const password = "0123456";
+    signInWithEmailAndPassword(auth, email, password)
+
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log("sing in okay");
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(error);
+        console.log(error.code);
+        console.log("sign in error");
+        // ..
+      });
+  }
   return (
     <Container
     maxW="lg"
@@ -50,7 +71,7 @@ function SignIn() {
             Log in to your user account
           </Heading>
           <Text color="fg.muted">
-            Don't have an account? <Link href="#">Sign up</Link>
+            Don't have an account? <Link href="/shopper/signup">Sign up</Link>
           </Text>
         </Stack>
       </Stack>
@@ -91,7 +112,7 @@ function SignIn() {
             </Button>
           </HStack>
           <Stack spacing="6">
-            <Button>Sign in</Button>
+            <Button onClick={signinClick}>Sign in</Button>
             <HStack>
               <Divider />
               <Text textStyle="sm" whiteSpace="nowrap" color="fg.muted">
